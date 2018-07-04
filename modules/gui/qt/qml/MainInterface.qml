@@ -22,7 +22,7 @@
  * 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
  *****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.4
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
 import "qrc:///style/"
@@ -102,14 +102,95 @@ Item {
 
         /* Playlist */
         PL.PLDisplay {
-            id: plDisplay
+            Rectangle{
+            id: search_area
+            width: parent.width
+            height: 50
+            color: "grey"
 
+                Rectangle{
+                    id: search_element_bound
+                    x: 13
+                    y: 23
+                    width: 280
+                    height: 22
+                    anchors.horizontalCenterOffset: 9
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    color: "grey"
+                    TextInput{
+                        id:search_text
+                        x: 39
+                        y: -12
+                        width: 170
+                        height: 31
+                        color: "white"
+                        verticalAlignment: Text.AlignVCenter
+                        property string placeholderText: "Search"
+                        Text {
+                            x: 14
+                            y: 7
+                            text: search_text.placeholderText
+                            verticalAlignment: Text.AlignVCenter
+                            color: "#bbb"
+                            visible: !search_text.text
+                        }
+                    }
+
+                    Button {
+                        id: button
+                        x: 209
+                        y: -12
+                        width: 30
+                        height: 30
+                    }
+
+                    Button {
+                        id: button1
+                        x: 245
+                        y: -12
+                        width: 30
+                        height: 30
+                    }
+
+                    Image {
+                        id: search_icon
+                        x: 3
+                        y: -12
+                        width: 30
+                        height: 30
+                        source: "qrc:///search_1.png"
+                    }
+                }
+            }
+            Rectangle{
+                id: playlist_area
+                x: 0
+                y: 86
+                width: parent.width
+                height: 400
+                ScrollView {
+                    anchors.fill: parent
+                    ListView {
+                        width: parent.width
+                        model: MovieModel {}
+                        focus: true
+                        delegate: Text {
+                            text: name + ": " + duration +": "+ stars
+                            
+                        }
+                    }
+                }
+            }
+            
+            /*
+            id: plDisplay
+            color: "light blue"
             z: 20
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             Layout.maximumWidth: VLCStyle.maxWidthPlaylist
-
             default_width: VLCStyle.defaultWidthPlaylist
+            */
         }
     }
 

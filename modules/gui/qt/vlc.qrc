@@ -86,6 +86,8 @@
     </qresource>
     <qresource prefix="/">
         <file alias="update.svg">pixmaps/update.svg</file>
+        <file alias="search.png">pixmaps/search.png</file>
+        <file alias="search_1.png">pixmaps/search_1.png</file>
         <file alias="noart.png">pixmaps/noart.png</file>
         <file alias="noart64.png">pixmaps/noart-64.png</file>
         <file alias="go-next.svg">pixmaps/go-next.svg</file>
@@ -171,6 +173,7 @@
         <file alias="MusicTracksDisplay.qml">qml/mediacenter/MusicTracksDisplay.qml</file>
     </qresource>
     <qresource prefix="/qml">
+        <file alias="MovieModel.qml">qml/MovieModel.qml</file>
         <file alias="about.qml">qml/about.qml</file>
         <file alias="BannerSources.qml">qml/BannerSources.qml</file>
         <file alias="help.qml">qml/help.qml</file>
