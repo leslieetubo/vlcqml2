@@ -112,7 +112,7 @@ Item {
                     id: search_element_bound
                     x: 13
                     y: 23
-                    width: 280
+                    width: parent.width
                     height: 22
                     anchors.horizontalCenterOffset: 9
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -121,7 +121,7 @@ Item {
                         id:search_text
                         x: 39
                         y: -12
-                        width: 170
+                        width: parent.width
                         height: 31
                         color: "white"
                         verticalAlignment: Text.AlignVCenter
@@ -172,11 +172,70 @@ Item {
                     anchors.fill: parent
                     ListView {
                         width: parent.width
+                        height: parent.height
                         model: MovieModel {}
                         focus: true
                         delegate: Text {
-                            text: name + ": " + duration +": "+ stars
-                            
+                            Rectangle {
+                                id: rectangle
+                                x: 0
+                                y: 0
+                                width: 310
+                                height: 57
+                                color: "grey"
+
+                                Text {
+                                    id: text1
+                                    x: 8
+                                    y: 10
+                                    width: 150
+                                    height: 27
+                                    text: name
+                                    font.bold: true
+                                    font.pixelSize: 15
+                                }
+
+                                ProgressBar {
+                                    id: progressBar
+                                    x: 8
+                                    y: 46
+                                    width: 174
+                                    height: 3
+                                    value: 0.6
+                                }
+
+                                Button {
+                                    id: button
+                                    x: 266
+                                    y: 8
+                                    width: 30
+                                    height: 30
+                                    text: qsTr("")
+                                }
+
+                                Button {
+                                    id: button1
+                                    x: 230
+                                    y: 8
+                                    width: 30
+                                    height: 30
+                                    text: qsTr("")
+                                }
+
+                                Text {
+                                    id: text3
+                                    x: 184
+                                    y: 40
+                                    width: 51
+                                    height: 15
+                                    text: duration
+                                    font.pixelSize: 12
+                                }
+                            }
+                            //text: name + ": " + duration +": "+ stars
+                            /*Label{
+                                text: name
+                            }*/   
                         }
                     }
                 }
