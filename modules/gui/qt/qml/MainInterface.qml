@@ -173,9 +173,13 @@ Item {
                     ListView {
                         width: parent.width
                         height: parent.height
+                        spacing: 42
+                        contentHeight: parent.height
                         model: MovieModel {}
                         focus: true
                         delegate: Text {
+                            x: 0
+                            y: 0
                             Rectangle {
                                 id: rectangle
                                 x: 0
