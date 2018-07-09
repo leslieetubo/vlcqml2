@@ -66,6 +66,8 @@
     <qresource prefix="/buttons/playlist">
         <file alias="playlist_add.svg">pixmaps/playlist/add.svg</file>
         <file alias="playlist_remove.svg">pixmaps/playlist/remove.svg</file>
+        <file alias="playlist_add.png">pixmaps/playlist/add.png</file>
+        <file alias="playlist_remove.png">pixmaps/playlist/remove.png</file>
         <file alias="repeat_off.svg">pixmaps/playlist/repeat_off.svg</file>
         <file alias="repeat_all.svg">pixmaps/playlist/repeat_all.svg</file>
         <file alias="repeat_one.svg">pixmaps/playlist/repeat_one.svg</file>
@@ -86,8 +88,9 @@
     </qresource>
     <qresource prefix="/">
         <file alias="update.svg">pixmaps/update.svg</file>
-        <file alias="search.png">pixmaps/search.png</file>
-        <file alias="search_1.png">pixmaps/search_1.png</file>
+        <file alias="search_dark.png">pixmaps/search_dark.png</file>
+        <file alias="star.png">pixmaps/star.png</file>
+        <file alias="search_transparent.png">pixmaps/search_transparent.png</file>
         <file alias="noart.png">pixmaps/noart.png</file>
         <file alias="noart64.png">pixmaps/noart-64.png</file>
         <file alias="go-next.svg">pixmaps/go-next.svg</file>
@@ -174,6 +177,8 @@
     </qresource>
     <qresource prefix="/qml">
         <file alias="MovieModel.qml">qml/MovieModel.qml</file>
+        <file alias="DraggableItem.qml">qml/DraggableItem.qml</file>
+        <file alias="DraggableItemDropArea.qml">qml/DraggableItemDropArea.qml</file>
         <file alias="about.qml">qml/about.qml</file>
         <file alias="BannerSources.qml">qml/BannerSources.qml</file>
         <file alias="help.qml">qml/help.qml</file>

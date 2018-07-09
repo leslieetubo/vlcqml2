@@ -22,9 +22,10 @@
  * 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
  *****************************************************************************/
 
-import QtQuick 2.4
-import QtQuick.Layouts 1.3
+import QtQuick 2.6
+import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
+import QtQuick.Window 2.2
 import "qrc:///style/"
 
 import "qrc:///mediacenter/" as MC
@@ -32,6 +33,7 @@ import "qrc:///playlist/" as PL
 
 
 Item {
+
     // The functions the C++ part can call
     function reloadData() { mcDisplay.reloadData();}
     function changedCategory() { mcDisplay.changedCategory(); }
@@ -102,144 +104,156 @@ Item {
 
         /* Playlist */
         PL.PLDisplay {
-            Rectangle{
-            id: search_area
-            width: parent.width
-            height: 50
-            color: "grey"
+            
+            Rectangle {
+                id: playlistContent
+                anchors.fill: parent
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 0
 
-                Rectangle{
-                    id: search_element_bound
-                    x: 13
-                    y: 23
-                    width: parent.width
-                    height: 22
-                    anchors.horizontalCenterOffset: 9
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    color: "grey"
-                    TextInput{
-                        id:search_text
-                        x: 39
-                        y: -12
-                        width: parent.width
-                        height: 31
-                        color: "white"
-                        verticalAlignment: Text.AlignVCenter
-                        property string placeholderText: "Search"
-                        Text {
-                            x: 14
-                            y: 7
-                            text: search_text.placeholderText
-                            verticalAlignment: Text.AlignVCenter
-                            color: "#bbb"
-                            visible: !search_text.text
+                    Rectangle {
+                        color: "grey"
+                        height: 50
+                        Layout.fillWidth: true
+
+                        Rectangle{
+                            id: search_bound
+                            x: 13
+                            y: 23
+                            width: parent.width
+                            height: 22
+                            anchors.horizontalCenterOffset: 9
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            color: "grey"
+                            TextInput{
+                                id:search_text
+                                x: 39
+                                y: -12
+                                width: parent.width
+                                height: 31
+                                color: "white"
+                                verticalAlignment: Text.AlignVCenter
+                                property string placeholderText: "Search"
+                                Text {
+                                    x: 14
+                                    y: 7
+                                    text: search_text.placeholderText
+                                    verticalAlignment: Text.AlignVCenter
+                                    color: "#bbb"
+                                    visible: !search_text.text
+                                }
+                            }
+
+                            Button {
+                                id: add_button
+                                x: 209
+                                y: -12
+                                width: 30
+                                height: 30
+                                iconSource: "qrc://buttons/playlist_add.png"
+                            }
+
+                            Button {
+                                id: remove_button
+                                x: 245
+                                y: -12
+                                width: 30
+                                height: 30
+                                iconSource: "qrc://buttons/playlist_remove.png"
+                            }
+
+                            Image {
+                                id: search_icon
+                                x: 3
+                                y: -12
+                                width: 30
+                                height: 30
+                                source: "qrc:///search_dark.png"
+                            }
                         }
                     }
 
-                    Button {
-                        id: button
-                        x: 209
-                        y: -12
-                        width: 30
-                        height: 30
-                    }
+                    ScrollView {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        ListView {
+                            id: playlistView
+                            spacing: 10
+                            model: MovieModel{}
+                            delegate: DraggableItem {
+                                Rectangle {
+                                    height: textLabel.height * 2
+                                    width: playlistView.width
+                                    color: "white"
 
-                    Button {
-                        id: button1
-                        x: 245
-                        y: -12
-                        width: 30
-                        height: 30
-                    }
+                                    Text {
+                                        id: textLabel
+                                        Rectangle {
+                                            id: rectangle
+                                            width: parent.width
+                                            height: parent.height
+                                            color: "#ffffff"
 
-                    Image {
-                        id: search_icon
-                        x: 3
-                        y: -12
-                        width: 30
-                        height: 30
-                        source: "qrc:///search_1.png"
-                    }
-                }
-            }
-            Rectangle{
-                id: playlist_area
-                x: 0
-                y: 86
-                width: parent.width
-                height: 400
-                ScrollView {
-                    anchors.fill: parent
-                    ListView {
-                        width: parent.width
-                        height: parent.height
-                        spacing: 42
-                        contentHeight: parent.height
-                        model: MovieModel {}
-                        focus: true
-                        delegate: Text {
-                            x: 0
-                            y: 0
-                            Rectangle {
-                                id: rectangle
-                                x: 0
-                                y: 0
-                                width: 310
-                                height: 57
-                                color: "grey"
+                                            Text {
+                                                id: text1
+                                                x: 2
+                                                y: 2
+                                                width: 302
+                                                height: 49
+                                                text: model.title
+                                                font.bold: true
+                                                font.pixelSize: 15
 
-                                Text {
-                                    id: text1
-                                    x: 8
-                                    y: 10
-                                    width: 150
-                                    height: 27
-                                    text: name
-                                    font.bold: true
-                                    font.pixelSize: 15
+                                                ProgressBar {
+                                                    id: progressBar
+                                                    x: 4
+                                                    y: 22
+                                                    width: 162
+                                                    height: 3
+                                                    value: model.elapsed
+                                                }
+
+                                                Image {
+                                                    id: fav_star
+                                                    x: 250
+                                                    y: 1
+                                                    width: 15
+                                                    height: 15
+                                                    source: "qrc:///star.png"
+                                                }
+
+                                                Text {
+                                                    id: text3
+                                                    x: 176
+                                                    y: 16
+                                                    width: 51
+                                                    height: 20
+                                                    text: model.duration
+                                                    font.pixelSize: 12
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    // Bottom line border
+                                    Rectangle {
+                                        anchors {
+                                            left: parent.left
+                                            right: parent.right
+                                            bottom: parent.bottom
+                                        }
+                                        height: 1
+                                        color: "lightgrey"
+                                    }
                                 }
 
-                                ProgressBar {
-                                    id: progressBar
-                                    x: 8
-                                    y: 46
-                                    width: 174
-                                    height: 3
-                                    value: 0.6
-                                }
+                                draggedItemParent: playlistContent
 
-                                Button {
-                                    id: button
-                                    x: 266
-                                    y: 8
-                                    width: 30
-                                    height: 30
-                                    text: qsTr("")
-                                }
-
-                                Button {
-                                    id: button1
-                                    x: 230
-                                    y: 8
-                                    width: 30
-                                    height: 30
-                                    text: qsTr("")
-                                }
-
-                                Text {
-                                    id: text3
-                                    x: 184
-                                    y: 40
-                                    width: 51
-                                    height: 15
-                                    text: duration
-                                    font.pixelSize: 12
+                                onMoveItemRequested: {
+                                    model.move(from, to, 1);
                                 }
                             }
-                            //text: name + ": " + duration +": "+ stars
-                            /*Label{
-                                text: name
-                            }*/   
                         }
                     }
                 }
@@ -255,6 +269,7 @@ Item {
             default_width: VLCStyle.defaultWidthPlaylist
             */
         }
+        /*Playlist End*/
     }
 
 
