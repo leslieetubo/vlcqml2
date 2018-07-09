@@ -185,7 +185,7 @@ Item {
                                 Rectangle {
                                     height: textLabel.height * 2
                                     width: playlistView.width
-                                    color: "white"
+                                    color: VLCStyle.bgColor
 
                                     Text {
                                         id: textLabel
@@ -193,7 +193,7 @@ Item {
                                             id: rectangle
                                             width: parent.width
                                             height: parent.height
-                                            color: "#ffffff"
+                                            color: VLCStyle.bgColor
 
                                             Text {
                                                 id: text1
@@ -204,15 +204,7 @@ Item {
                                                 text: model.title
                                                 font.bold: true
                                                 font.pixelSize: 15
-
-                                                ProgressBar {
-                                                    id: progressBar
-                                                    x: 4
-                                                    y: 22
-                                                    width: 162
-                                                    height: 3
-                                                    value: model.elapsed
-                                                }
+                                                color: VLCStyle.textColor
 
                                                 Image {
                                                     id: fav_star
@@ -231,6 +223,7 @@ Item {
                                                     height: 20
                                                     text: model.duration
                                                     font.pixelSize: 12
+                                                    color: VLCStyle.textColor
                                                 }
                                             }
                                         }
