@@ -26,12 +26,7 @@ QString Item::size() const
 ItemModel::ItemModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-    QHash<int, QByteArray> roles;
-    roles[TypeRole] = "type";
-    roles[SizeRole] = "size";
-    roleNames(roles);
 }
-
 
 void ItemModel::addItem(const Item &item)
 {
@@ -41,11 +36,12 @@ void ItemModel::addItem(const Item &item)
 }
 
 int ItemModel::rowCount(const QModelIndex & parent) const {
+    Q_UNUSED(parent);
     return m_items.count();
 }
 
 QVariant ItemModel::data(const QModelIndex & index, int role) const {
-    if (index.row() < 0 || index.row() > m_items.count())
+    if (index.row() < 0 || index.row() >= m_items.count())
         return QVariant();
 
     const Item &item = m_items[index.row()];
@@ -54,4 +50,11 @@ QVariant ItemModel::data(const QModelIndex & index, int role) const {
     else if (role == SizeRole)
         return item.size();
     return QVariant();
+}
+
+QHash<int, QByteArray> ItemModel::roleNames() const {
+    QHash<int, QByteArray> roles;
+    roles[TypeRole] = "type";
+    roles[SizeRole] = "size";
+    return roles;
 }
