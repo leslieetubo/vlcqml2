@@ -104,7 +104,7 @@ Item {
 
         /* Playlist */
         PL.PLDisplay {
-            
+            width: VLCStyle.defaultWidthPlaylist
             Rectangle {
                 id: playlistContent
                 anchors.fill: parent
