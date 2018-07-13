@@ -180,7 +180,7 @@ Item {
                         ListView {
                             id: playlistView
                             spacing: 10
-                            model: MovieModel{}
+                            model: ItemModel{}
                             delegate: DraggableItem {
                                 Rectangle {
                                     height: textLabel.height * 2

@@ -176,9 +176,9 @@
         <file alias="MusicTracksDisplay.qml">qml/mediacenter/MusicTracksDisplay.qml</file>
     </qresource>
     <qresource prefix="/qml">
-        <file alias="MovieModel.qml">qml/MovieModel.qml</file>
-        <file alias="DraggableItem.qml">qml/DraggableItem.qml</file>
-        <file alias="DraggableItemDropArea.qml">qml/DraggableItemDropArea.qml</file>
+        <file alias="ItemModel.qml">qml/newplaylist/itemModel.qml</file>
+        <file alias="DraggableItem.qml">qml/newplaylist/DraggableItem.qml</file>
+        <file alias="DraggableItemDropArea.qml">qml/newplaylist/DraggableItemDropArea.qml</file>
         <file alias="about.qml">qml/about.qml</file>
         <file alias="BannerSources.qml">qml/BannerSources.qml</file>
         <file alias="help.qml">qml/help.qml</file>

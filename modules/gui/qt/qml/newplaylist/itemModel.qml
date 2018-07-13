@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
 ListModel {
-    id: movieModel
+    id: itemModel
     ListElement {
         title: "The Mummy"
         duration: "2:00:00"
