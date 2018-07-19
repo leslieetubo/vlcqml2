@@ -12,14 +12,19 @@
 class Item
 {
 public:
-    Item(const QString &type, const QString &size);
+    Item(const QString &type, const QString &size, 
+    	const QString &artist, const QString &genre);
 
-    QString type() const;
+    QString duration() const;
     QString size() const;
+    QString artist() const;
+    QString genre() const;
 
 private:
-    QString m_type;
+    QString m_duration;
     QString m_size;
+    QString m_artist;
+    QString m_genre;
 };
 
 class ItemModel : public QAbstractListModel
@@ -27,8 +32,10 @@ class ItemModel : public QAbstractListModel
     Q_OBJECT
 public:
     enum ItemRoles {
-        TypeRole = Qt::UserRole + 1,
-        SizeRole
+        DurationRole = Qt::UserRole + 1,
+        SizeRole,
+        ArtistRole,
+        GenreRole
     };
 
     ItemModel(QObject *parent = 0);

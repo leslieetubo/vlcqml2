@@ -8,14 +8,15 @@
  */
 #include "playlist.h"
 
-Item::Item(const QString &type, const QString &size)
-    : m_type(type), m_size(size)
+Item::Item(const QString &duration, const QString &size, 
+    const QString &artist, const QString &genre)
+    : m_duration(duration), m_size(size), m_artist(artist), m_genre(genre)
 {
 }
 
-QString Item::type() const
+QString Item::duration() const
 {
-    return m_type;
+    return m_duration;
 }
 
 QString Item::size() const
@@ -23,10 +24,20 @@ QString Item::size() const
     return m_size;
 }
 
+QString Item::artist() const
+{
+    return m_artist;
+}
+
+QString Item::genre() const
+{
+    return m_genre;
+}
+/*
 ItemModel::ItemModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-}
+}*/
 
 void ItemModel::addItem(const Item &item)
 {
@@ -45,16 +56,22 @@ QVariant ItemModel::data(const QModelIndex & index, int role) const {
         return QVariant();
 
     const Item &item = m_items[index.row()];
-    if (role == TypeRole)
-        return item.type();
+    if (role == DurationRole)
+        return item.duration();
     else if (role == SizeRole)
         return item.size();
+    else if (role == ArtistRole)
+        return item.artist();
+    else if (role == GenreRole)
+        return item.genre();
     return QVariant();
 }
 
 QHash<int, QByteArray> ItemModel::roleNames() const {
     QHash<int, QByteArray> roles;
-    roles[TypeRole] = "type";
+    roles[DurationRole] = "duration";
     roles[SizeRole] = "size";
+    roles[ArtistRole] = "artist";
+    roles[GenreRole] = "genre";
     return roles;
 }
