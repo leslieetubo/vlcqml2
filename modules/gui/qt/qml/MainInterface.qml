@@ -116,7 +116,7 @@ Item {
                         color: "grey"
                         height: 50
                         Layout.fillWidth: true
-
+                        //search bar in playlist
                         Rectangle{
                             id: search_bound
                             x: 13
@@ -173,7 +173,7 @@ Item {
                             }
                         }
                     }
-
+                    //playlist with scroll view, drag and drop
                     ScrollView {
                         Layout.fillWidth: true
                         Layout.fillHeight: true

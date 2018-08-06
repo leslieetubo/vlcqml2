@@ -46,11 +46,13 @@ void ItemModel::addItem(const Item &item)
     endInsertRows();
 }
 
+// chosing active index 
 int ItemModel::rowCount(const QModelIndex & parent) const {
     Q_UNUSED(parent);
     return m_items.count();
 }
 
+// Example of role names
 QVariant ItemModel::data(const QModelIndex & index, int role) const {
     if (index.row() < 0 || index.row() >= m_items.count())
         return QVariant();
