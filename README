@@ -1,57 +1,76 @@
-README for the VLC media player
-===============================
+# gr-bokehgui: Web based display for GNU Radio
+------------------------------
 
-VLC is a popular libre and open source media player and multimedia engine,
-used by a large number of individuals, professionals, companies and
-institutions. Using open source technologies and libraries, VLC has been
-ported to most computing platforms, including GNU/Linux, Windows, Mac OS X,
-BSD, iOS and Android.
-VLC can play most multimedia files, discs, streams, allows playback from
-devices, and is able to convert to or stream in various formats.
-The VideoLAN project was started at the university École Centrale Paris who
-relicensed VLC under the GPLv2 license in February 2001. Since then, VLC has
-been downloaded close to one billion times.
+## Overview
+<img align="right" src="https://wiki.gnuradio.org/images/2/2f/Gnuradio_logo_icon.png?054f8" width="12%" />
 
-Links:
-======
+The module provides various sinks and widgets to allow interaction with the live GNU Radio applications remotely over the network. The module uses [Bokeh](https://bokeh.pydata.org/en/latest/)'s client API and streaming features. Using widgets and plots from Bokeh, the module enables the GUI for GNU Radio that renders in web browser. Just like `gr-qtgui`, it is fully integrated with GRC to allow easy use.
 
-The VLC web site  . . . . . http://www.videolan.org/
-Support . . . . . . . . . . http://www.videolan.org/support/
-Forums  . . . . . . . . . . https://forum.videolan.org/
-Wiki  . . . . . . . . . . . https://wiki.videolan.org/
-The Developers site . . . . https://wiki.videolan.org/Developers_Corner
-VLC hacking guide . . . . . https://wiki.videolan.org/Hacker_Guide
-Bugtracker  . . . . . . . . https://trac.videolan.org/vlc/
-The VideoLAN web site . . . http://www.videolan.org/
+The module was developed as a part of Google Summer of Code 2017.
 
-Source Code Content:
-===================
-ABOUT-NLS          - Notes on the Free Translation Project.
-AUTHORS            - VLC authors.
-COPYING            - The GPL license.
-COPYING.LIB        - The LGPL license.
-INSTALL            - Installation and building instructions.
-NEWS               - Important modifications between the releases.
-README             - This file.
-THANKS             - VLC contributors.
+## Dependency
+1. GNU Radio (should contain [commit@3c989f9](https://github.com/gnuradio/gnuradio/pull/1434))
+2. [Bokeh library](https://bokeh.pydata.org/en/latest/)
+   (Tested on v0.12.06)
+3. Tornado v4.4
+4. NodeJS v6.6.x - v7.0
 
-bin/               - VLC binaries.
-bindings/          - libVLC bindings to other languages.
-compat/            - compatibility library for operating systems missing
-                     essential functionalities.
-contrib/           - Facilities for retrieving external libraries and building
-                     them for systems that don't have the right versions.
-doc/               - Miscellaneous documentation.
-extras/analyser    - Code analyser and editor specific files.
-extras/buildsystem - different buildsystems specific files.
-extras/misc        - Files that don't fit in the other extras/ categories.
-extras/package     - VLC packaging specific files such as spec files.
-extras/tools/      - Facilities for retrieving external building tools needed
-                     for systems that don't have the right versions.
-include/           - Header files.
-lib/               - libVLC source code.
-modules/           - VLC plugins and modules. Most of the code is here.
-po/                - VLC translations.
-share/             - Common Resources files.
-src/               - libvlccore source code.
-test/              - testing system.
+### GNU Radio dependency
+Make sure you use most recent version of GNU Radio. If you are using v3.7.12, please make sure to use commit@3c989f9. It contains necessary changes in core GRC to enable the use of `gr-bokehgui`.
+
+## Installation
+### Using PyBOMBS
+```
+$ pybombs install gr-bokehgui
+```
+
+### Using source code
+1. Make sure that you have satisfied all dependency listed above.
+2. Clone the latest code
+```
+$ git clone https://github.com/kartikp1995/gr-bokehgui.git
+```
+3. Build with CMake:
+```
+$ cd gr-bokehgui/
+$ mkdir build
+$ cd build/
+$ cmake ../
+$ make
+$ make test
+$ sudo make install
+```
+
+## Working with the module
+The complete tutorial for the module is available [here](http://kartikpatel.in/GSoC2017/tutorial/). The tutorial covers setting up guide, using sinks and widgets in GRC and guide to the placement of the elements.
+
+## Quick Glance
+For the following flowgraph:
+![tutorial.grc - flowgraph](http://kartikpatel.in/GSoC2017/images/tutorial/tutorial.grc.png)<br>
+
+The output should be as follows:
+![tutorial.grc - output](http://kartikpatel.in/GSoC2017/images/tutorial/tutorial.png)<br>
+
+The following Youtube video provides quick glance over the module and basic procedures.
+[![Youtube - demo](http://img.youtube.com/vi/EyNOE9icNVc/0.jpg)](https://www.youtube.com/watch?v=EyNOE9icNVc)
+
+## Future works
+1. Histogram sink
+2. BER sink
+3. Providing a default layout for the plot arrangements
+4. Add CSS based styling themes
+
+### Minor tasks:
+1. Enable averaging in Frequency sink
+
+## Bugs reporting:
+Kindly report any bugs or issues [on Github](https://github.com/kartikp1995/gr-bokehgui/issues/).
+
+## Contributing to the project
+If you want to contribute to the module, feel free to add the pull request. Please read the contribution guidelines of GNU Radio [here](https://wiki.gnuradio.org/index.php/Development).
+
+## Contact
+For queries or feedbacks, drop a mail to [discuss-gnuradio](mailto:discuss-gnuradio@gnu.org).
+
+## License
+The project is licensed under GPLv3. See LICENSE for terms.
