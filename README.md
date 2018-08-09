@@ -5,7 +5,7 @@
 ## Overview
 <img align="right" src="https://wiki.gnuradio.org/images/2/2f/Gnuradio_logo_icon.png?054f8" width="12%" />
 
-The module provides various sinks and widgets to allow interaction with the live GNU Radio applications remotely over the network. The module uses [Bokeh](https://bokeh.pydata.org/en/latest/)'s client API and streaming features. Using widgets and plots from Bokeh, the module enables the GUI for GNU Radio that renders in web browser. Just like `gr-qtgui`, it is fully integrated with GRC to allow easy use.
+This module of the videolan vlc media player, is to add a new look to the vlc UI/UX. It is  aimed at making the UI of the old VLC windows and Linux interface reach a UWP standard, with the help of Qml and C++. This module contains mainly the Playlist of the new VLC look and some fixes made to the UI.
 
 The module was developed as a part of Google Summer of Code 2018, under the supervision of the videolan mentor ```JeanBaptiste Kempt``` and ```Pierre Lamot```
 
